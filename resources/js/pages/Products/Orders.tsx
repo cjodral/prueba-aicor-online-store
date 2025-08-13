@@ -18,12 +18,18 @@ interface Order {
 
 const Orders: React.FC = () => {
   const [orders, setOrders] = useState<Order[]>([]);
+  const [loading, setLoading] = useState(true); // nuevo estado
 
   useEffect(() => {
     axios.get("/orders")
       .then(res => setOrders(res.data))
-      .catch(err => console.error("Error al cargar órdenes:", err));
+      .catch(err => console.error("Error al cargar órdenes:", err))
+      .finally(() => setLoading(false)); // se actualiza cuando termina la petición
   }, []);
+
+  if (loading) {
+    return <p className="font-bold flex text-black">Cargando compras...</p>;
+  }
 
   return (
     <div>

@@ -146,7 +146,7 @@ const Index: React.FC<Props> = ({ products }) => {
       </div>
 
       {showOrders ? (
-        <Orders orders={orders} />
+        <Orders />
       ) : (
         <>
           {isCartOpen && (
